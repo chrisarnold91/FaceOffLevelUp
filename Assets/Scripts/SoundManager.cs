@@ -16,16 +16,6 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip entertaining;
 	public AudioClip closing;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
 	public void playWelcome() {
 		efxSource.clip = welcome;
 		efxSource.Play ();

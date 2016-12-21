@@ -14,5 +14,4 @@ public class ShieldManager : MonoBehaviour {
 		GameObject shield = GameObject.FindGameObjectWithTag (shieldTag);
 		shield.GetComponent<Shield>().putUpShield (shieldTag);
 	}
-
 }

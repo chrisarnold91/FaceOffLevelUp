@@ -20,7 +20,7 @@ public class VRDetectAlphas : MonoBehaviour {
 	// the pixel a player must look at to enter brush mode
 	public Vector2 startPoint;
 	public Vector2 hitCoord;
-	private bool initiatedStartPoint = false;
+	public bool initiatedStartPoint = false;
 	public bool leftStartPoint = false;
 
 	private float timer = 0f;
@@ -49,7 +49,6 @@ public class VRDetectAlphas : MonoBehaviour {
 		HUD = GameObject.Find ("HUD");
 		buzzword = GameObject.Find ("Buzzword");
 		scoreText = GameObject.Find ("Score");
-		print ("BUZZWORD: " + buzzword);
 		anima = buzzword.GetComponent<Animator> ();
 		animaScore = scoreText.GetComponent<Animator> ();
 

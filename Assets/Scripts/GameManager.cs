@@ -19,7 +19,6 @@ public class GameManager : Photon.PunBehaviour {
 	public GameObject whoWonText;
 	public GameObject HUD;
 
-//	private bool audioLock = true; // no audio collisions, do later
 	private bool welcome = true;
 	public bool tutorial1 = true;
 	public bool tutorial2 = true;
@@ -36,7 +35,6 @@ public class GameManager : Photon.PunBehaviour {
 		whoWonText = GameObject.Find ("WhoWonText");
 		HUD = GameObject.Find ("HUD");
 		cam = GameObject.Find ("PlayerCamera");
-//		cam.GetComponent<VREyeRaycaster> ().enabled = false;
 		soundManager = GameObject.Find ("SoundManager").GetComponent <SoundManager> ();
 
 		if (!PhotonNetwork.isMasterClient) {
@@ -128,9 +126,6 @@ public class GameManager : Photon.PunBehaviour {
 		{
 			Debug.Log ("OnPhotonPlayerConnected isMasterClient " + PhotonNetwork.isMasterClient); // called before OnPhotonPlayerDisconnected
 		}
-
-//		PhotonView pv = PhotonView.Get (this);
-//		pv.RPC ("startTimer", PhotonTargets.All, 60);
 	}
 
 
@@ -157,12 +152,6 @@ public class GameManager : Photon.PunBehaviour {
 	{
 		PhotonNetwork.LeaveRoom();
 	}
-
-//	[PunRPC]
-//	private void startTimer(int totalTime) {
-//		print ("start " + totalTime + " second timer!");
-//		timerOn = true;
-//	}
 
 	private void handleGameOver() {
 		float health = HUD.GetComponent<HealthBar> ().rectWidth;

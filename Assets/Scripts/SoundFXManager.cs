@@ -9,16 +9,6 @@ public class SoundFXManager : MonoBehaviour {
 	public AudioClip throwFX;
 	public AudioClip splatFX;
 
-	// Use this for initialization
-	void Start () {
-
-	}
-
-	// Update is called once per frame
-	void Update () {
-
-	}
-
 	public void playBrush() {
 		efxSource.clip = brushFX;
 		efxSource.Play ();

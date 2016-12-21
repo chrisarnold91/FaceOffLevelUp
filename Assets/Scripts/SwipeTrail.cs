@@ -25,7 +25,7 @@ namespace VRStandardAssets.Utils
 			if (drawing.GetComponent<VRDetectAlphas> ().brushModeEnabled) {
 				GetComponent<TrailRenderer> ().enabled = true;
 				fwd = cam.transform.TransformDirection (Vector3.forward) * 10 + P2correction;
-//				print (fwd);
+
 				// uh LOL WE DON'T EVEN NEED THESE TWO LINES EITHER... this is a 2 line function -_-
 //				Plane objPlane = new Plane (Camera.main.transform.forward * -1, this.transform.position);
 //				Ray mRay = Camera.main.ScreenPointToRay (fwd);

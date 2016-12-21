@@ -33,7 +33,6 @@ public class AnimationManager : MonoBehaviour {
 	public void triggerShielding(string activeShield) {
 		if (activeShield == "shield1" && cam.tag == "P1"
 			|| activeShield == "shield2" && cam.tag == "P2") {
-//		if (activeShield == cam.tag) {
 			PhotonView pv = PhotonView.Get (this);
 			pv.RPC ("triggerShieldingRPC", PhotonTargets.All);
 		}

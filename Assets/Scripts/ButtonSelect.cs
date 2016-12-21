@@ -78,7 +78,6 @@ namespace VRStandardAssets.Menu
 		private void HandleOut ()
 		{
 			// When the user looks away from the rendering of the scene, hide the radial.
-			//m_SelectionRadial.Hide();
 			m_SelectionRadial.HandleUp ();
 
 			m_GazeOver = false;

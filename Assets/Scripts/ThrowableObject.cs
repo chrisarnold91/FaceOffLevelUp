@@ -3,9 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class ThrowableObject : Photon.PunBehaviour {
-//	public class ThrowableObject : Photon.PunBehaviour, IPunObservable {
 
-//	public GameObject Item3D;
 	public bool collidedYet = false;
 	public bool itemThrown = false;
 	public bool idling = false;
@@ -89,8 +87,6 @@ public class ThrowableObject : Photon.PunBehaviour {
 
 
 	void OnCollisionEnter (Collision col) {
-//		rb.AddTorque (transform.right * 1000);
-//		rb.useGravity = true;
 		collidedYet = true;
 		if (col.gameObject.tag == "P1" || col.gameObject.tag == "P2") {
 			if (col.gameObject.tag == "P1") {
@@ -108,24 +104,4 @@ public class ThrowableObject : Photon.PunBehaviour {
 	public bool hittingPlayer() {
 		return hitPlayer;
 	}
-
-//	void IPunObservable.OnPhotonSerializeView (PhotonStream stream, PhotonMessageInfo info){ 
-//		if (stream.isWriting) {
-//			stream.SendNext (itemThrown);
-//			print ("Writing: " + itemThrown);
-//		} else {
-//			this.itemThrown = (bool)stream.ReceiveNext ();
-//			print ("receiving: " + itemThrown);
-//			if (itemThrown) {
-//				StartCoroutine(DisplayWarning (2));
-//			}
-//		}
-//	}
-//
-//	IEnumerator DisplayWarning(int delay) {
-//		GameObject warningSign = GameObject.Find ("Warning");
-//		warningSign.GetComponent<Image> ().enabled = true;
-//		yield return new WaitForSeconds (delay);
-//		warningSign.GetComponent<Image> ().enabled = false;
-//	}
 }

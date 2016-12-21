@@ -118,5 +118,4 @@ public class Launcher : Photon.PunBehaviour {
 			label.text = "Waiting for Player 2....";
 		}
 	}
-
 }

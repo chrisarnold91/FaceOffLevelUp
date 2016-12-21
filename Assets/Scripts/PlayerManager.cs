@@ -23,14 +23,4 @@ public class PlayerManager : Photon.PunBehaviour {
 
 		this.gameObject.tag = whichCamera;
 	}
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

@@ -54,7 +54,9 @@ public class CubeButton : Photon.PunBehaviour
 			GameObject.Find ("ObjectManager").GetComponent<ObjectManager> ().moveObject(parent);
 			// reset collidedYet in case object gets picked up again
 			GameObject.Find ("ObjectManager").GetComponent<ObjectManager> ().resetObject(parent);
+			GetComponent<BoxCollider> ().enabled = false;
 			itemSelected = false;
+			print ("2D OBJECT pre instantiated:" + Item2D);
 		}
 
 		if (!finishedMoving) {
@@ -97,7 +99,6 @@ public class CubeButton : Photon.PunBehaviour
 
 		if (transform.parent.position == drawArea) {
 			finishedMoving = true;
-			GetComponent<BoxCollider> ().enabled = false;
 
 			// if you are the active player, 2D drawing should appear in front of you
 			if (activePlayer == cam.tag) {
@@ -121,6 +122,7 @@ public class CubeButton : Photon.PunBehaviour
 	{
 		GameObject clone2D = GameObject.Instantiate (Item2D);
 		GameObject cloneSwipe = GameObject.Instantiate (Swipe);
+		print ("2D OBJECT:" + clone2D);
 		cloneSwipe.GetComponent<SwipeTrail> ().drawing = clone2D;
 		clone2D.GetComponent<VRDetectAlphas> ().assign3DObject (gameObject);
 
@@ -134,7 +136,6 @@ public class CubeButton : Photon.PunBehaviour
 	{
 		m_InteractiveItem.OnOver += HandleOver;
 		m_InteractiveItem.OnOut += HandleOut;
-//			m_SelectionRadial.OnSelectionComplete += HandleSelectionComplete; // moved to Start
 	}
 
 
@@ -159,7 +160,6 @@ public class CubeButton : Photon.PunBehaviour
 	private void HandleOut ()
 	{
 		// When the user looks away from the rendering of the scene, hide the radial.
-		//m_SelectionRadial.Hide();
 		m_SelectionRadial.HandleUp ();
 
 		m_GazeOver = false;
@@ -177,9 +177,6 @@ public class CubeButton : Photon.PunBehaviour
 			} else {
 				itemSelected = true;
 				anim.GetComponent<AnimationManager> ().transitionToItemSelected ();
-
-				// if player has already selected object, don't play tutorial
-//				GameObject.Find ("GameManager").GetComponent<GameManager> ().tutorial1 = false;
 			}
 		}
 	}

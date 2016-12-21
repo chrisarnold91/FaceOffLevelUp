@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{A72CA409-DBE5-4695-16F1-C9189FBCE2C1}</ProjectGuid>
+    <ProjectGuid>{7B1375CE-57F1-A5E8-1C0A-B1B3E15EAD9B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -96,13 +96,13 @@
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
  <Reference Include="Newtonsoft.Json">
- <HintPath>/Users/christopherarnold/Documents/School/CSC404/FaceOffBeta/Assets/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>
+ <HintPath>/Users/christopherarnold/Documents/School/CSC404/FaceOffLevelUp/Assets/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>/Users/christopherarnold/Documents/School/CSC404/FaceOffBeta/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>/Users/christopherarnold/Documents/School/CSC404/FaceOffLevelUp/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>/Users/christopherarnold/Documents/School/CSC404/FaceOffBeta/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>/Users/christopherarnold/Documents/School/CSC404/FaceOffLevelUp/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>/Applications/Unity/Unity.app/Contents/Managed/UnityEditor.Graphs.dll</HintPath>
@@ -116,9 +116,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{6F6CF535-259A-17BF-6A69-47730CA5EDA2}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{3A267024-737F-3F7B-03C6-D049389F47EE}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{FCD08B98-BBC4-70CB-9D10-56FAC740A961}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
+      <Project>{74E18647-298A-8025-3FDC-8F1C4A03ACEB}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
