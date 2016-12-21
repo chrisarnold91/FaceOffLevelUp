@@ -1,0 +1,17 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CubeButton.cs">
+    <Files>
+      <File FileName="Assets/Scripts/ThrowableObject.cs" Line="21" Column="4" />
+      <File FileName="Assets/Scripts/CubeButton.cs" Line="63" Column="4" />
+      <File FileName="Assets/Scripts/SwipeTrail.cs" Line="14" Column="49" NotebookId="1" />
+      <File FileName="Assets/Scripts/VRDetectAlphas.cs" Line="65" Column="65" NotebookId="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="Assets/Scripts/CubeButton.cs" line="67" offsetX="379" offsetY="990" expression="Item2D" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
+</Properties>
