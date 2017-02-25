@@ -14,6 +14,7 @@ public class GameManager : Photon.PunBehaviour {
 	public bool gameOver = false;
 	private GameObject cam;
 	private SoundManager soundManager;
+	private Text timer;
 
 	public GameObject gameOverText;
 	public GameObject whoWonText;
@@ -36,6 +37,7 @@ public class GameManager : Photon.PunBehaviour {
 		HUD = GameObject.Find ("HUD");
 		cam = GameObject.Find ("PlayerCamera");
 		soundManager = GameObject.Find ("SoundManager").GetComponent <SoundManager> ();
+		timer = GameObject.Find ("Timer").GetComponent<Text> ();
 
 		if (!PhotonNetwork.isMasterClient) {
 			cam.tag = "P2";
@@ -53,6 +55,7 @@ public class GameManager : Photon.PunBehaviour {
 	void Update() {
 		if (timerOn && !gameOver) {
 			timeLeft += Time.deltaTime;
+			timer.text = displayTime (timeLeft);
 		}
 
 		if (timeLeft > 5.0f && welcome) {
@@ -164,5 +167,17 @@ public class GameManager : Photon.PunBehaviour {
 
 		gameOverText.GetComponent<Text> ().enabled = true;
 		whoWonText.GetComponent<Text> ().enabled = true;
+	}
+
+	private string displayTime(float time) {
+		time = totalTime - time;
+		int minutes = (int) time / 60;
+		int seconds = (int) time - (minutes * 60);
+		string secondsString = "";
+		secondsString = seconds.ToString();
+		if (seconds < 10) {
+			secondsString = "0" + seconds;
+		}
+		return minutes + " : " + secondsString;
 	}
 }

@@ -11,6 +11,7 @@ public class Shield : MonoBehaviour {
 
 	private GameObject cam;
 	private GameObject anim;
+	private Text coolDown;
 
 	public void Start() {
 		cam = GameObject.Find ("PlayerCamera");
@@ -20,6 +21,7 @@ public class Shield : MonoBehaviour {
 		} else {
 			anim = GameObject.Find ("P2Char");
 		}
+		coolDown = GameObject.Find ("CoolDownTimer").GetComponent<Text>();
 	}
 
 	public void Update () {
@@ -46,14 +48,33 @@ public class Shield : MonoBehaviour {
 		// shield is cooling down
 		if(!ShieldAvailable) {
 			CooldownTimer -= Time.deltaTime;
-			indicator.GetComponent<Image>().enabled = false;
+			Color c = indicator.color;
+			c.a = 0.3f;
+			indicator.color = c;
+//			indicator.GetComponent<Image>().enabled = false;
+
+			if (CooldownTimer <= 1.0f) {
+				coolDown.text = "1";
+			} else if (CooldownTimer <= 2.0f) {
+				coolDown.text = "2";
+			} else if (CooldownTimer <= 3.0f) {
+				coolDown.text = "3";
+			} else if (CooldownTimer <= 4.0f) {
+				coolDown.text = "4";
+			}
 		}
 
 		// shield has finished cooling down
 		if(CooldownTimer <= 0.0f){
 			ShieldAvailable = true;
 			CooldownTimer = 5.0f;
-			indicator.GetComponent<Image>().enabled = true;
+			Color c = indicator.color;
+			c.a = 1.0f;
+			indicator.color = c;
+//			indicator.GetComponent<Image>().enabled = true;
+
+			coolDown.text = "5";
+			coolDown.enabled = false;
 		}
 	}
 
@@ -64,5 +85,6 @@ public class Shield : MonoBehaviour {
 		anim.GetComponent<AnimationManager> ().triggerShielding (activeShield);
 		ShieldAvailable = false;
 		ShieldIsOn = true;
+		coolDown.enabled = true;
 	}
 }

@@ -10,9 +10,11 @@ namespace VRStandardAssets.Utils
 		public Vector3 P2correction = new Vector3(0f, 0f, 0f);
 
 		private GameObject cam;
+		private TrailRenderer tr;
 
 		void Start() {
 			cam = GameObject.Find("PlayerCamera");
+			tr = GetComponent<TrailRenderer> ();
 
 			if (cam.tag == "P2") {
 				P2correction = new Vector3 (0f, 0f, 1000f);
@@ -33,6 +35,13 @@ namespace VRStandardAssets.Utils
 				// move trail renderer to where the camera is pointing
 				this.transform.position = fwd;
 			}
+
+			// doesn't work with VRDetectAlphas: changing namespace to UnityEditor to make SerializedObject work
+//			SerializedObject so = new SerializedObject (tr);
+//
+//			for (int c = 0; c < 5; c++) {
+//				so.FindProperty ("m_Colors.m_Color[" + c + "]").colorValue = Color.red;
+//			}
 
 			// when finished drawing, hide the Trail Renderer
 			if (drawing.GetComponent<VRDetectAlphas> ().finishedDrawing) {
