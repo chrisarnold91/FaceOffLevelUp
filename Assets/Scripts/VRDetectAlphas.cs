@@ -166,27 +166,27 @@ public class VRDetectAlphas : MonoBehaviour {
 		//buzzword.GetComponent<Animator>().Play("popup");
 		string[] words1 = new string[] {"bad", "terrible", "awful"};
 		string[] words2 = new string[] {"Okay", "acceptable", "fine", "meh"};
-		string[] words3 = new string[] {"mediocore", "alright"};
+		string[] words3 = new string[] {"pretty good", "not bad I guess", "alright"};
 		string[] words4 = new string[] {"sick job my guy", "wild", "swaggy"};
 		string[] words5 = new string[] {"gnarly", "radical", "hot"};
 		print("ACCURACY IS" + accuracy);
-		if (accuracy == 0) {
+		if (accuracy <= 1) {
 			print(0);
 			message = "Uninstall";
 		} 
-		else if (accuracy < 20 && accuracy > 0) {
+		else if (accuracy <= 10 && accuracy > 1) {
 			print(20);
 			message = words1[Random.Range(0, words1.Length -1)];
 		}
-		else if (accuracy < 40 && accuracy > 20) {
+		else if (accuracy <= 30 && accuracy > 10) {
 			print(40);
 			message = words2[Random.Range(0, words2.Length -1)];
 		}
-		else if (accuracy < 60 && accuracy > 40) {
+		else if (accuracy <= 50 && accuracy > 30) {
 			print(60);
 			message = words3[Random.Range(0, words3.Length -1)];
 		}
-		else if (accuracy < 80 && accuracy > 60) {
+		else if (accuracy <= 70 && accuracy > 50) {
 			print(80);
 			message = words4[Random.Range(0, words4.Length -1)];
 		}

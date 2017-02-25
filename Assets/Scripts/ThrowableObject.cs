@@ -17,12 +17,16 @@ public class ThrowableObject : Photon.PunBehaviour {
 	private Vector3 highPoint;
 	private Vector3 lowPoint;
 	private SoundFXManager soundFXManager;
-
+	private SpriteRenderer overlay;
+	Animator anima;
+	int showverlay = Animator.StringToHash ("showverlay");
 	// Use this for initialization
 	void Start () {
 		cam = GameObject.Find("PlayerCamera");
 		rb = GetComponent<Rigidbody> ();
 		soundFXManager = GameObject.Find ("SoundFXManager").GetComponent <SoundFXManager> ();
+		overlay = GameObject.Find ("overlay").GetComponent<SpriteRenderer>();
+		anima = overlay.GetComponent<Animator> ();
 
 		if (cam.tag == "P1") {
 			highPoint = new Vector3 (-20f, 0f, 1010f);
@@ -91,8 +95,14 @@ public class ThrowableObject : Photon.PunBehaviour {
 		if (col.gameObject.tag == "P1" || col.gameObject.tag == "P2") {
 			if (col.gameObject.tag == "P1") {
 				anim = GameObject.Find ("P1Char");
+				if (cam.tag == "P1") {
+					anima.SetTrigger (showverlay);
+				}
 			} else {
 				anim = GameObject.Find ("P2Char");
+				if (cam.tag == "P2") {
+				anima.SetTrigger (showverlay);
+				}
 			}
 
 			anim.GetComponent<AnimationManager> ().triggerGettingHit (col.gameObject.tag);

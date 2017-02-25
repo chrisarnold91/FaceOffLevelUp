@@ -46,21 +46,24 @@ public class Shield : MonoBehaviour {
 		}
 
 		// shield is cooling down
-		if(!ShieldAvailable) {
-			CooldownTimer -= Time.deltaTime;
-			Color c = indicator.color;
-			c.a = 0.3f;
-			indicator.color = c;
+		if (gameObject.tag == "shield1" && cam.tag == "P1"
+		    || gameObject.tag == "shield2" && cam.tag == "P2") {
+			if (!ShieldAvailable) {
+				CooldownTimer -= Time.deltaTime;
+				Color c = indicator.color;
+				c.a = 0.3f;
+				indicator.color = c;
 //			indicator.GetComponent<Image>().enabled = false;
 
-			if (CooldownTimer <= 1.0f) {
-				coolDown.text = "1";
-			} else if (CooldownTimer <= 2.0f) {
-				coolDown.text = "2";
-			} else if (CooldownTimer <= 3.0f) {
-				coolDown.text = "3";
-			} else if (CooldownTimer <= 4.0f) {
-				coolDown.text = "4";
+				if (CooldownTimer <= 1.0f) {
+					coolDown.text = "1";
+				} else if (CooldownTimer <= 2.0f) {
+					coolDown.text = "2";
+				} else if (CooldownTimer <= 3.0f) {
+					coolDown.text = "3";
+				} else if (CooldownTimer <= 4.0f) {
+					coolDown.text = "4";
+				}
 			}
 		}
 
