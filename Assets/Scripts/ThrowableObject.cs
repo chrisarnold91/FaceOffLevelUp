@@ -20,6 +20,7 @@ public class ThrowableObject : Photon.PunBehaviour {
 	private SpriteRenderer overlay;
 	Animator anima;
 	int showverlay = Animator.StringToHash ("showverlay");
+	private GameObject splat;
 	// Use this for initialization
 	void Start () {
 		cam = GameObject.Find("PlayerCamera");
@@ -108,6 +109,13 @@ public class ThrowableObject : Photon.PunBehaviour {
 			anim.GetComponent<AnimationManager> ().triggerGettingHit (col.gameObject.tag);
 			hitPlayer = true;
 			soundFXManager.playSplat ();
+			splat = GameObject.Find("Effect_02");
+			Debug.Log(splat.GetComponent<ParticleSystem>().isPlaying);
+			splat.GetComponent<ParticleSystem>().Play();
+			//ParticleSystem.EmissionModule em = splat.GetComponent<ParticleSystem>().emission;
+			//em.enabled = true;
+			Debug.Log(splat.GetComponent<ParticleSystem>().isPlaying);
+
 		}
 	}
 
