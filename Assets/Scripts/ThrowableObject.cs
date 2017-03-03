@@ -96,11 +96,13 @@ public class ThrowableObject : Photon.PunBehaviour {
 		if (col.gameObject.tag == "P1" || col.gameObject.tag == "P2") {
 			if (col.gameObject.tag == "P1") {
 				anim = GameObject.Find ("P1Char");
+				splat = GameObject.Find("P1ParticleEffect");
 				if (cam.tag == "P1") {
 					anima.SetTrigger (showverlay);
 				}
 			} else {
 				anim = GameObject.Find ("P2Char");
+				splat = GameObject.Find("P2ParticleEffect");
 				if (cam.tag == "P2") {
 				anima.SetTrigger (showverlay);
 				}
@@ -109,7 +111,6 @@ public class ThrowableObject : Photon.PunBehaviour {
 			anim.GetComponent<AnimationManager> ().triggerGettingHit (col.gameObject.tag);
 			hitPlayer = true;
 			soundFXManager.playSplat ();
-			splat = GameObject.Find("Effect_02");
 			Debug.Log(splat.GetComponent<ParticleSystem>().isPlaying);
 			splat.GetComponent<ParticleSystem>().Play();
 			//ParticleSystem.EmissionModule em = splat.GetComponent<ParticleSystem>().emission;
