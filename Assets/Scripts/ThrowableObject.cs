@@ -8,26 +8,27 @@ public class ThrowableObject : Photon.PunBehaviour {
 	public bool itemThrown = false;
 	public bool idling = false;
 	private bool movingUp = true;
+	public string lastHeldBy;
 
 	private GameObject cam;
 	private GameObject anim;
 	private Rigidbody rb;
 	private VRDetectAlphas drawingScript;
-	private bool hitPlayer = false;
+	public bool hitPlayer = false;
 	private Vector3 highPoint;
 	private Vector3 lowPoint;
 	private SoundFXManager soundFXManager;
-	private SpriteRenderer overlay;
-	Animator anima;
-	int showverlay = Animator.StringToHash ("showverlay");
+//	private SpriteRenderer overlay;
+//	Animator anima;
+//	int showverlay = Animator.StringToHash ("showverlay");
 	private GameObject splat;
 	// Use this for initialization
 	void Start () {
 		cam = GameObject.Find("PlayerCamera");
 		rb = GetComponent<Rigidbody> ();
 		soundFXManager = GameObject.Find ("SoundFXManager").GetComponent <SoundFXManager> ();
-		overlay = GameObject.Find ("overlay").GetComponent<SpriteRenderer>();
-		anima = overlay.GetComponent<Animator> ();
+//		overlay = GameObject.Find ("overlay").GetComponent<SpriteRenderer>();
+//		anima = overlay.GetComponent<Animator> ();
 
 		if (cam.tag == "P1") {
 			highPoint = new Vector3 (-20f, 0f, 1010f);
@@ -97,26 +98,27 @@ public class ThrowableObject : Photon.PunBehaviour {
 			if (col.gameObject.tag == "P1") {
 				anim = GameObject.Find ("P1Char");
 				splat = GameObject.Find("P1ParticleEffect");
-				if (cam.tag == "P1") {
-					anima.SetTrigger (showverlay);
-				}
+//				if (cam.tag == "P1") {
+//					anima.SetTrigger (showverlay);
+//				}
 			} else {
 				anim = GameObject.Find ("P2Char");
 				splat = GameObject.Find("P2ParticleEffect");
-				if (cam.tag == "P2") {
-				anima.SetTrigger (showverlay);
-				}
+//				if (cam.tag == "P2") {
+//					anima.SetTrigger (showverlay);
+//				}
 			}
 
-			anim.GetComponent<AnimationManager> ().triggerGettingHit (col.gameObject.tag);
-			hitPlayer = true;
-			soundFXManager.playSplat ();
-			Debug.Log(splat.GetComponent<ParticleSystem>().isPlaying);
-			splat.GetComponent<ParticleSystem>().Play();
-			//ParticleSystem.EmissionModule em = splat.GetComponent<ParticleSystem>().emission;
-			//em.enabled = true;
-			Debug.Log(splat.GetComponent<ParticleSystem>().isPlaying);
-
+			if (!hitPlayer && !idling && lastHeldBy != col.gameObject.tag) {
+				anim.GetComponent<AnimationManager> ().triggerGettingHit (col.gameObject.tag);
+				hitPlayer = true;
+				soundFXManager.playSplat ();
+				Debug.Log (splat.GetComponent<ParticleSystem> ().isPlaying);
+				splat.GetComponent<ParticleSystem> ().Play ();
+				//ParticleSystem.EmissionModule em = splat.GetComponent<ParticleSystem>().emission;
+				//em.enabled = true;
+				Debug.Log (splat.GetComponent<ParticleSystem> ().isPlaying);
+			}
 		}
 	}
 

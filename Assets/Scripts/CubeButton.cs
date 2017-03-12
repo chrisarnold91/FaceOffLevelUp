@@ -74,10 +74,14 @@ public class CubeButton : Photon.PunBehaviour
 		}
 
 		GetComponentInParent<Rigidbody> ().useGravity = false;
+		GetComponentInParent<ThrowableObject> ().lastHeldBy = who;
 		finishedMoving = false;
 	}
 
 	private void moveItem() {
+		// set flag to false to allow sound fx and animations to happen again on the next collision
+		gameObject.GetComponentInParent<ThrowableObject> ().hitPlayer = false;
+
 		// you should see your opponent's item go to their hand
 		if (activePlayer != cam.tag) {
 			if (cam.tag == "P2") {
@@ -107,6 +111,7 @@ public class CubeButton : Photon.PunBehaviour
 			} else {
 				// else you are not the active player, you should see your opponent idling (tossing food in their hand)
 				GetComponentInParent<ThrowableObject> ().idling = true;
+				GetComponent<BoxCollider> ().enabled = false;
 			}
 		}
 	}

@@ -33,9 +33,7 @@ public class ObjectManager : Photon.PunBehaviour {
 
 	[PunRPC]
 	private void moveObjectRPC(string cameraTag, string itemName) {
-		print ("ITEM NAME: " + itemName);
 		GameObject Item3D = GameObject.Find (itemName);
-		print ("ITEM 3D: " + Item3D);
 		Item3D.GetComponentInChildren<CubeButton> ().readyToMove (cameraTag);
 	}
 
