@@ -159,6 +159,7 @@ public class CubeButton : Photon.PunBehaviour
 		m_SelectionRadial.HandleDown ();
 
 		m_GazeOver = true;
+		GetComponent<MeshRenderer>().material.shader = Shader.Find ("Outlined/Silhouetted Bumped Diffuse");
 	}
 
 
@@ -168,6 +169,7 @@ public class CubeButton : Photon.PunBehaviour
 		m_SelectionRadial.HandleUp ();
 
 		m_GazeOver = false;
+		GetComponent<MeshRenderer> ().material.shader = Shader.Find ("Standard");
 	}
 
 

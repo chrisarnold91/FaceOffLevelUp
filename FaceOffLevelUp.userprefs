@@ -1,18 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/ThrowableObject.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CubeButton.cs">
     <Files>
-      <File FileName="Assets/Scripts/CubeButton.cs" Line="75" Column="3" />
+      <File FileName="Assets/Scripts/CubeButton.cs" Line="175" Column="76" />
       <File FileName="Assets/Scripts/ThrowableObject.cs" Line="112" Column="65" />
-      <File FileName="Assets/Scripts/GameManager.cs" Line="177" Column="37" />
-      <File FileName="Assets/Scripts/VRDetectAlphas.cs" Line="111" Column="4" />
-      <File FileName="Assets/Scripts/Shield.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/HealthBar.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/VRDetectAlphas.cs" Line="100" Column="61" />
+      <File FileName="Assets/Scripts/HealthBar.cs" Line="112" Column="3" />
       <File FileName="Assets/Scripts/AnimationManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Bloom.cs" Line="100" Column="14" />
-      <File FileName="Assets/Shaders/outline_diffuse.shader" Line="129" Column="2" />
+      <File FileName="Assets/Scripts/Bloom.cs" Line="1" Column="1" />
+      <File FileName="Assets/Shaders/outline_diffuse.shader" Line="1" Column="9" />
       <File FileName="Assets/Scripts/VRInteractiveItem.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/ObjectManager.cs" Line="36" Column="50" />
+      <File FileName="Assets/Scripts/ObjectManager.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
