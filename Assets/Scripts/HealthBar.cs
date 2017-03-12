@@ -8,8 +8,6 @@ public class HealthBar : Photon.PunBehaviour {
 	public Image controlbar;
 	public static bool changed;
 	public static bool P2Changed;
-	public Text score;
-	public Text EnemyScore;
 	public Text gameOverText;
 
 	public float rectWidth;
@@ -97,23 +95,19 @@ public class HealthBar : Photon.PunBehaviour {
 
 	[PunRPC]
 	private void changeHealthRPC(string attacker, float damage) {
+		TextMesh YouScore1 = GameObject.Find("YouScore1").GetComponent<TextMesh>();
+		TextMesh ThemScore1 = GameObject.Find ("ThemScore1").GetComponent<TextMesh>();
+		TextMesh YouScore2 = GameObject.Find ("YouScore2").GetComponent<TextMesh>();
+		TextMesh ThemScore2 = GameObject.Find ("ThemScore2").GetComponent<TextMesh>();
+
 		if (attacker == "P1") {
-			rectWidth += damage;
+			int newScore = int.Parse(YouScore1.text) + (int)damage;
+			YouScore1.text = newScore.ToString();
+			ThemScore2.text = newScore.ToString();
 		} else {
-			rectWidth -= damage;
-		}
-
-		if (rectWidth > totalWidth)
-			rectWidth = totalWidth;
-
-		if (rectWidth < 0f)
-			rectWidth = 0f;
-
-		if (cam.tag == "P1") {
-			controlbar.GetComponent<RectTransform> ().sizeDelta = new Vector2 (rectWidth, rectHeight);
-		} else {
-			controlbar.GetComponent<RectTransform> ().sizeDelta = new Vector2 (totalWidth - rectWidth, rectHeight);
+			int newScore = int.Parse(ThemScore1.text) + (int)damage;
+			ThemScore1.text = newScore.ToString();
+			YouScore2.text = newScore.ToString();
 		}
 	}
-		
 }

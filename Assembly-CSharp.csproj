@@ -167,6 +167,7 @@
      <None Include="Assets\Imported\VRSampleScenes\Shaders\UnlitTransparentParam.shader" />
      <None Include="Assets\Plugins\Photon3Unity3D.xml" />
      <None Include="Assets\Shaders\outline_diffuse.shader" />
+     <None Include="Assets\Shaders\3DText.shader.shader" />
      <None Include="Assets\Imported\Plugins\Android\Assets\OSIG_Readme.txt" />
      <None Include="Assets\Plugins\release_history.txt" />
      <None Include="Assets\Imported\VRSampleScenes\Shaders\UIOverlay.shader" />
