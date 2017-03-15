@@ -41,6 +41,7 @@ public class VRDetectAlphas : MonoBehaviour {
 	private Texture2D tex;
 	private VREyeRaycaster vrEyeRaycaster;
 	private SoundFXManager soundFXManager;
+	private GameManager gameManager;
 
 		
 	void Start()
@@ -55,6 +56,7 @@ public class VRDetectAlphas : MonoBehaviour {
 		tex = Instantiate(m_Renderer.material.mainTexture) as Texture2D;
 		vrEyeRaycaster = cam.GetComponent<VREyeRaycaster> ();
 		soundFXManager = GameObject.Find ("SoundFXManager").GetComponent <SoundFXManager> ();
+		gameManager = GameObject.Find ("GameManager").GetComponent<GameManager>();
 
 		if (cam.tag == "P1") {
 			anim = GameObject.Find ("P1Char");
@@ -133,6 +135,12 @@ public class VRDetectAlphas : MonoBehaviour {
 				Item3D.GetComponentInParent<ThrowableObject>().itemThrown = true;
 				anim.GetComponent<AnimationManager> ().transitionToFinishedDrawing ();
 				soundFXManager.playThrow ();
+
+				if (cam.tag == "P1") {
+					gameManager.accuracies1.Add (accuracy);
+				} else {
+					gameManager.accuracies2.Add (accuracy);
+				}
 			}
 		} else {
 			if (brushModeEnabled && !finishedDrawing) {

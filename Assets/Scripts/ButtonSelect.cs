@@ -91,9 +91,11 @@ namespace VRStandardAssets.Menu
 				if (outsideRoom) {
 					GameObject.Find ("Launcher").GetComponent<Launcher> ().Connect ();
 				} else {
-					GameObject.Find ("GameManager").GetComponent<GameManager> ().LeaveRoom ();
+					if (GameObject.Find ("GameManager").GetComponent<GameManager> ().gameOver) {
+						GameObject.Find ("GameManager").GetComponent<GameManager> ().LeaveRoom ();
+					}
 				}
-				this.enabled = false;
+//				this.enabled = false;
 			}
 		}
 	}

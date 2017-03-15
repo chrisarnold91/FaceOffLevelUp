@@ -18,13 +18,16 @@ public class ThrowableObject : Photon.PunBehaviour {
 	private Vector3 highPoint;
 	private Vector3 lowPoint;
 	private SoundFXManager soundFXManager;
+	private GameManager gameManager;
 //	private SpriteRenderer overlay;
 //	Animator anima;
 //	int showverlay = Animator.StringToHash ("showverlay");
 	private GameObject splat;
 	// Use this for initialization
+
 	void Start () {
 		cam = GameObject.Find("PlayerCamera");
+		gameManager = GameObject.Find ("GameManager").GetComponent<GameManager>();
 		rb = GetComponent<Rigidbody> ();
 		soundFXManager = GameObject.Find ("SoundFXManager").GetComponent <SoundFXManager> ();
 //		overlay = GameObject.Find ("overlay").GetComponent<SpriteRenderer>();
@@ -62,8 +65,10 @@ public class ThrowableObject : Photon.PunBehaviour {
 
 		if (who == "P2") {
 			rb.velocity = new Vector3(0f, 100 * Mathf.Sin(15), 1600 * Mathf.Cos(90));
+			gameManager.countP2++;
 		} else {
 			rb.velocity = new Vector3(0f, 90 * Mathf.Sin(19), 1600 * Mathf.Cos(0));
+			gameManager.countP1++;
 		}
 
 		rb.useGravity = true;
@@ -95,7 +100,11 @@ public class ThrowableObject : Photon.PunBehaviour {
 	void OnCollisionEnter (Collision col) {
 		collidedYet = true;
 		if (col.gameObject.tag == "P1" || col.gameObject.tag == "P2") {
-			if (col.gameObject.tag == "P1") {
+			if (col.gameObject.tag == "shield1") {
+				gameManager.addBlock1();
+			} else if (col.gameObject.tag == "shield2") {
+				gameManager.addBlock2();
+			} else if (col.gameObject.tag == "P1") {
 				anim = GameObject.Find ("P1Char");
 				splat = GameObject.Find("P1ParticleEffect");
 //				if (cam.tag == "P1") {

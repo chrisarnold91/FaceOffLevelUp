@@ -123,8 +123,10 @@ MonoBehaviour:
   roundScore: 0
   brushModeEnabled: 0
   finishedDrawing: 0
+  drawingSound: 0
   startPoint: {x: 0, y: 0}
   hitCoord: {x: 0, y: 0}
+  initiatedStartPoint: 0
   leftStartPoint: 0
 --- !u!132 &132000012844010036
 GUIText:

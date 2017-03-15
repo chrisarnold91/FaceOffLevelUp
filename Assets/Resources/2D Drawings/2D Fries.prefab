@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Renderer: {fileID: 23000012255745452}
   Item2D: {fileID: 1000013991514980}
   thickness: 100
-  baseScore: 50
+  baseScore: 60
   roundScore: 0
   brushModeEnabled: 0
   finishedDrawing: 0

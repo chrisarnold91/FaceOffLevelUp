@@ -119,12 +119,14 @@ MonoBehaviour:
   m_Renderer: {fileID: 23000013277777410}
   Item2D: {fileID: 1000013309411710}
   thickness: 100
-  baseScore: 40
+  baseScore: 50
   roundScore: 0
   brushModeEnabled: 0
   finishedDrawing: 0
+  drawingSound: 0
   startPoint: {x: 0, y: 0}
   hitCoord: {x: 0, y: 0}
+  initiatedStartPoint: 0
   leftStartPoint: 0
 --- !u!132 &132000012439760388
 GUIText:

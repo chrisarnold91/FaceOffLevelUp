@@ -21,6 +21,10 @@ public class Launcher : Photon.PunBehaviour {
 	/// <summary>
 	/// MonoBehaviour method called on GameObject by Unity during early initialization phase.
 	/// </summary>
+
+	public AudioSource efxSource;
+	public AudioClip newWelcome;
+
 	void Awake()
 	{
 		// #NotImportant
@@ -32,6 +36,9 @@ public class Launcher : Photon.PunBehaviour {
 		// #Critical
 		// this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
 		PhotonNetwork.automaticallySyncScene = true;
+
+//		efxSource.clip = newWelcome;
+		efxSource.PlayOneShot (newWelcome);
 	}
 	/// <summary>
 	/// MonoBehaviour method called on GameObject by Unity during initialization phase.
@@ -109,8 +116,9 @@ public class Launcher : Photon.PunBehaviour {
 		// Only load level until both players have joined
 		if (PhotonNetwork.playerList.Length == 2)
 		{
-			PhotonNetwork.LoadLevel("Supermarket");
+//			StartCoroutine (playWelcome ());
 			//Tell other player they are connected
+			PhotonNetwork.LoadLevel("Supermarket");
 		}
 		else if(PhotonNetwork.playerList.Length == 1)
 		{
@@ -118,4 +126,12 @@ public class Launcher : Photon.PunBehaviour {
 			label.text = "Waiting for Player 2....";
 		}
 	}
+
+//	IEnumerator playWelcome() {
+//		efxSource.clip = newWelcome;
+//		efxSource.Play ();
+////		yield return new WaitWhile (() => efxSource.isPlaying);
+//		yield return new WaitForSeconds(15.0f);
+//		PhotonNetwork.LoadLevel("Supermarket");
+//	}
 }

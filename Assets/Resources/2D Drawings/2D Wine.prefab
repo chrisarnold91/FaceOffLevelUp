@@ -107,14 +107,15 @@ MonoBehaviour:
   m_InteractiveItem: {fileID: 114000012942027134}
   m_Renderer: {fileID: 23000010556998786}
   Item2D: {fileID: 1000010639102100}
-  Item3D: {fileID: 0}
-  cam: {fileID: 1000012969048720, guid: cb987addf60a648e6ace13c4542a1484, type: 2}
   thickness: 100
-  baseScore: 80
+  baseScore: 60
   roundScore: 0
   brushModeEnabled: 0
   finishedDrawing: 0
-  score: 0
+  drawingSound: 0
+  startPoint: {x: 0, y: 0}
+  hitCoord: {x: 0, y: 0}
+  initiatedStartPoint: 0
   leftStartPoint: 0
 --- !u!114 &114000012942027134
 MonoBehaviour:

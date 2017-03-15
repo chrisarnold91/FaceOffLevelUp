@@ -130,4 +130,4 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _OutlineColor
-      second: {r: 0.089376256, g: 0.8103448, b: 0.36504063, a: 0.597}
+      second: {r: 0.89705884, g: 0.8735848, b: 0.0989403, a: 0.597}

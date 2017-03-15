@@ -180,7 +180,7 @@ public class CubeButton : Photon.PunBehaviour
 		if (m_GazeOver && !gameOver) {
 			if (tag == "papertowel") {
 				//heal yourself
-				GameObject.Find("HUD").GetComponent<HealthBar>().heal();
+//				GameObject.Find("HUD").GetComponent<HealthBar>().heal();
 			} else {
 				itemSelected = true;
 				anim.GetComponent<AnimationManager> ().transitionToItemSelected ();

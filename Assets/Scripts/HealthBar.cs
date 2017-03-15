@@ -46,16 +46,16 @@ public class HealthBar : Photon.PunBehaviour {
 			timer -= Time.deltaTime;
 		}
 
-		if(timer <= 0.0f && used){
-			//reset timer
-			timer = 10.0f;
-
-			//can use
-			used = false;
-
-			towel.GetComponentInChildren<MeshRenderer>().enabled = true;
-			SpawnRandomPlace();
-		}
+//		if(timer <= 0.0f && used){
+//			//reset timer
+//			timer = 10.0f;
+//
+//			//can use
+//			used = false;
+//
+//			towel.GetComponentInChildren<MeshRenderer>().enabled = true;
+//			SpawnRandomPlace();
+//		}
 	}
 
 	public void updateScore (float damage) {
@@ -99,6 +99,10 @@ public class HealthBar : Photon.PunBehaviour {
 		TextMesh ThemScore1 = GameObject.Find ("ThemScore1").GetComponent<TextMesh>();
 		TextMesh YouScore2 = GameObject.Find ("YouScore2").GetComponent<TextMesh>();
 		TextMesh ThemScore2 = GameObject.Find ("ThemScore2").GetComponent<TextMesh>();
+
+		print ("SCORES");
+		print (YouScore1);
+		print (ThemScore1);
 
 		if (attacker == "P1") {
 			int newScore = int.Parse(YouScore1.text) + (int)damage;

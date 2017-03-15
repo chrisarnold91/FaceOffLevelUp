@@ -15,6 +15,8 @@ public class SoundManager : MonoBehaviour {
 	public AudioClip cleanUp;
 	public AudioClip entertaining;
 	public AudioClip closing;
+	public AudioClip newWelcome;
+	public AudioClip newTutorial;
 
 	public void playWelcome() {
 		efxSource.clip = welcome;
@@ -63,6 +65,16 @@ public class SoundManager : MonoBehaviour {
 
 	public void playClosing() {
 		efxSource.clip = closing;
+		efxSource.Play ();
+	}
+
+	public void playNewWelcome() {
+		efxSource.clip = newWelcome;
+		efxSource.Play ();
+	}
+
+	public void playNewTutorial() {
+		efxSource.clip = newTutorial;
 		efxSource.Play ();
 	}
 }
