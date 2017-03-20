@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using VRStandardAssets.Utils;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class VRDetectAlphas : MonoBehaviour {
 
@@ -68,7 +69,7 @@ public class VRDetectAlphas : MonoBehaviour {
 	void Update()
 	{
 		if (!initiatedStartPoint) {
-			print ("turn off renderer!");
+//			print ("turn off renderer!");
 			SwipeTrail st = GameObject.Find ("swipe(Clone)").GetComponent<SwipeTrail> ();
 			TrailRenderer tr = st.GetComponent<TrailRenderer> ();
 			tr.enabled = false;
@@ -127,19 +128,26 @@ public class VRDetectAlphas : MonoBehaviour {
 				brushModeEnabled = false;
 				finishedDrawing = true;
 
-				roundScore = calculateScore ();
-				int roundedScore = (int)roundScore;
-				ShowMessage (roundedScore.ToString ());
-				ShowBuzzword (accuracy);
-				Item2D.GetComponent<MeshRenderer> ().enabled = false;
-				Item3D.GetComponentInParent<ThrowableObject>().itemThrown = true;
-				anim.GetComponent<AnimationManager> ().transitionToFinishedDrawing ();
-				soundFXManager.playThrow ();
-
-				if (cam.tag == "P1") {
-					gameManager.accuracies1.Add (accuracy);
+				print (SceneManager.GetActiveScene ());
+				if (SceneManager.GetActiveScene ().name == "Splash") {
+					print ("GO TO GAME");
+					GameObject.Find ("Launcher").GetComponent<Launcher> ().Connect ();
 				} else {
-					gameManager.accuracies2.Add (accuracy);
+
+					roundScore = calculateScore ();
+					int roundedScore = (int)roundScore;
+					ShowMessage (roundedScore.ToString ());
+					ShowBuzzword (accuracy);
+					Item2D.GetComponent<MeshRenderer> ().enabled = false;
+					Item3D.GetComponentInParent<ThrowableObject> ().itemThrown = true;
+					anim.GetComponent<AnimationManager> ().transitionToFinishedDrawing ();
+					soundFXManager.playThrow ();
+
+					if (cam.tag == "P1") {
+						gameManager.accuracies1.Add (accuracy);
+					} else {
+						gameManager.accuracies2.Add (accuracy);
+					}
 				}
 			}
 		} else {
