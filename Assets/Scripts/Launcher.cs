@@ -12,6 +12,7 @@ public class Launcher : Photon.PunBehaviour {
 	//  public GameObject controlPanel;
 	[Tooltip("The UI Label to inform the user that the connection is in progress")]
 	public GameObject progressLabel;
+	public GameObject instructions;
 	/// <summary>
 	/// Keep track of the current process. Since connection is asynchronous and is based on several callbacks from Photon, 
 	/// we need to keep track of this to properly adjust the behavior when we receive call back by Photon.
@@ -55,6 +56,7 @@ public class Launcher : Photon.PunBehaviour {
 			PhotonNetwork.LoadLevel("Supermarket");
 			Text label = progressLabel.GetComponent<Text>();
 			label.text = "Connecting...";
+			instructions.GetComponent<Text> ().text = "Hint: Drawing faster and\n\nmore accurately will score\n\nyou more points";
 		}
 		else if (PhotonNetwork.playerList.Length == 1)
 		{

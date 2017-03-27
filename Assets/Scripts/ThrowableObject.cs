@@ -99,18 +99,16 @@ public class ThrowableObject : Photon.PunBehaviour {
 
 	void OnCollisionEnter (Collision col) {
 		collidedYet = true;
+		if (col.gameObject.tag == "shield1" || col.gameObject.tag == "shield2") {
+			gameManager.updateBlocks (col.gameObject.tag);
+		}
 		if (col.gameObject.tag == "P1" || col.gameObject.tag == "P2") {
-			if (col.gameObject.tag == "shield1") {
-				gameManager.addBlock1();
-			} else if (col.gameObject.tag == "shield2") {
-				gameManager.addBlock2();
-			} else if (col.gameObject.tag == "P1") {
+			
+			if (col.gameObject.tag == "P1") {
 				anim = GameObject.Find ("P1Char");
 				splat = GameObject.Find("P1ParticleEffect");
-//				if (cam.tag == "P1") {
-//					anima.SetTrigger (showverlay);
-//				}
-			} else {
+			}
+			if (col.gameObject.tag == "P2") {
 				anim = GameObject.Find ("P2Char");
 				splat = GameObject.Find("P2ParticleEffect");
 //				if (cam.tag == "P2") {

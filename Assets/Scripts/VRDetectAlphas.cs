@@ -130,7 +130,6 @@ public class VRDetectAlphas : MonoBehaviour {
 
 				print (SceneManager.GetActiveScene ());
 				if (SceneManager.GetActiveScene ().name == "Splash") {
-					print ("GO TO GAME");
 					GameObject.Find ("Launcher").GetComponent<Launcher> ().Connect ();
 				} else {
 
@@ -142,12 +141,7 @@ public class VRDetectAlphas : MonoBehaviour {
 					Item3D.GetComponentInParent<ThrowableObject> ().itemThrown = true;
 					anim.GetComponent<AnimationManager> ().transitionToFinishedDrawing ();
 					soundFXManager.playThrow ();
-
-					if (cam.tag == "P1") {
-						gameManager.accuracies1.Add (accuracy);
-					} else {
-						gameManager.accuracies2.Add (accuracy);
-					}
+					gameManager.updateAccuracy (cam.tag, accuracy);
 				}
 			}
 		} else {
@@ -192,23 +186,23 @@ public class VRDetectAlphas : MonoBehaviour {
 		} 
 		else if (accuracy <= 10 && accuracy > 1) {
 			print(20);
-			message = words1[Random.Range(0, words1.Length -1)];
+			message = words1[Random.Range(0, words1.Length)];
 		}
 		else if (accuracy <= 30 && accuracy > 10) {
 			print(40);
-			message = words2[Random.Range(0, words2.Length -1)];
+			message = words2[Random.Range(0, words2.Length)];
 		}
 		else if (accuracy <= 50 && accuracy > 30) {
 			print(60);
-			message = words3[Random.Range(0, words3.Length -1)];
+			message = words3[Random.Range(0, words3.Length)];
 		}
 		else if (accuracy <= 70 && accuracy > 50) {
 			print(80);
-			message = words4[Random.Range(0, words4.Length -1)];
+			message = words4[Random.Range(0, words4.Length)];
 		}
 		else {
 			print(100);
-			message = words5[Random.Range(0, words5.Length -1)];
+			message = words5[Random.Range(0, words5.Length)];
 		}
 		buzzword.GetComponent<Text>().text = message; 
 	}

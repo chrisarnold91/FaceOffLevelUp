@@ -130,3 +130,12 @@ MonoBehaviour:
   brushFX: {fileID: 8300000, guid: e60b22cf0c39f4337a23e9888e554d40, type: 3}
   throwFX: {fileID: 8300000, guid: 95c6d2aa942fb496aa5b51d83f406156, type: 3}
   splatFX: {fileID: 8300000, guid: ceec70d7ee1d04412a05c2f61de8e346, type: 3}
+  splat1FX: {fileID: 8300000, guid: de748abb7053e4c9b9ace3b0456f228e, type: 3}
+  splat2FX: {fileID: 8300000, guid: d9b60b20a78474e70b40f3be12f57abd, type: 3}
+  splat3FX: {fileID: 8300000, guid: 5ae3b95ef2b204cfaa895eb9255ee13f, type: 3}
+  splat4FX: {fileID: 8300000, guid: 09020662262854bd78d30c5c784d7846, type: 3}
+  splat5FX: {fileID: 8300000, guid: e86eed84767044166adbb4d968eead14, type: 3}
+  defend1FX: {fileID: 8300000, guid: 14d7afc4d61be42c6965391f51fea1fe, type: 3}
+  defend2FX: {fileID: 8300000, guid: 73290d097e09c435fa7f26035f951218, type: 3}
+  hitShield1FX: {fileID: 8300000, guid: c9380e761312647638d83fd1c3b460dd, type: 3}
+  hitShield2FX: {fileID: 8300000, guid: ff3c98d5dd81c4afb8a6e8ceb4eb2d80, type: 3}

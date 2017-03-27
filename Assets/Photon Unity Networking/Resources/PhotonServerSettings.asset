@@ -46,4 +46,6 @@ MonoBehaviour:
   - activateShieldRPC
   - triggerGettingHitRPC
   - changeHealthRPC
+  - accuracyRPC
+  - blocksRPC
   DisableAutoOpenWizard: 1

@@ -155,7 +155,7 @@ Prefab:
     - target: {fileID: 224000011364344526, guid: 9438eeefbc154452a951ef44bfb94470,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 45
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 224000011364344526, guid: 9438eeefbc154452a951ef44bfb94470,
         type: 2}
@@ -636,6 +636,28 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 715dedf5db61e3a4fae7cc929024c379, type: 3}
   m_PrefabInternal: {fileID: 1816922841}
+--- !u!1 &442550130 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000012703953072, guid: 9438eeefbc154452a951ef44bfb94470,
+    type: 2}
+  m_PrefabInternal: {fileID: 163512341}
+--- !u!95 &442550133
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 442550130}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 956b2d9b027e64eeca5ac270fa6b3436, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &515653497
 Prefab:
   m_ObjectHideFlags: 0
@@ -1007,6 +1029,15 @@ Prefab:
       propertyPath: brushModeEnabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23000010038425312, guid: a43f17750075740fb9c317b4b4b41215,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9b14883e3b95c4be9907b33915d7c71e, type: 2}
+    - target: {fileID: 1000011936349546, guid: a43f17750075740fb9c317b4b4b41215, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a43f17750075740fb9c317b4b4b41215, type: 2}
   m_IsPrefabParent: 0
@@ -1173,6 +1204,11 @@ Prefab:
       propertyPath: efxSource
       value: 
       objectReference: {fileID: 2041391620}
+    - target: {fileID: 114000013757120498, guid: c67cd0338346b412989d1b3f60863207,
+        type: 2}
+      propertyPath: instructions
+      value: 
+      objectReference: {fileID: 442550130}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c67cd0338346b412989d1b3f60863207, type: 2}
   m_IsPrefabParent: 0
@@ -1921,6 +1957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxPlayersPerRoom: 2
   progressLabel: {fileID: 1777159144}
+  instructions: {fileID: 442550130}
   efxSource: {fileID: 2041391620}
   newWelcome: {fileID: 8300000, guid: 194fda237b75648e49fd2615fdd4bd97, type: 3}
 --- !u!4 &2041391619

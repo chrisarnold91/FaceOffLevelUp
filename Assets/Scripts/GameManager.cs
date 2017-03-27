@@ -15,6 +15,7 @@ public class GameManager : Photon.PunBehaviour {
 	public bool gameOver = false;
 	private GameObject cam;
 	private SoundManager soundManager;
+	private SoundFXManager soundFXManager;
 	private Text timer;
 
 //	public GameObject gameOverText;
@@ -47,6 +48,7 @@ public class GameManager : Photon.PunBehaviour {
 		HUD = GameObject.Find ("HUD");
 		cam = GameObject.Find ("PlayerCamera");
 		soundManager = GameObject.Find ("SoundManager").GetComponent <SoundManager> ();
+		soundFXManager = GameObject.Find ("SoundFXManager").GetComponent <SoundFXManager> ();
 		timer = GameObject.Find ("Timer").GetComponent<Text> ();
 
 		if (!PhotonNetwork.isMasterClient) {
@@ -123,8 +125,6 @@ public class GameManager : Photon.PunBehaviour {
 			hate = false;
 		}
 
-
-
 		if (timeLeft > totalTime) {
 			gameOver = true;
 			handleGameOver ();
@@ -167,6 +167,35 @@ public class GameManager : Photon.PunBehaviour {
 		PhotonNetwork.LeaveRoom();
 	}
 
+	public void updateAccuracy(string who, float accuracy) {
+		PhotonView pv = PhotonView.Get (this);
+		pv.RPC ("accuracyRPC", PhotonTargets.All, who, accuracy);
+	}
+
+	public void updateBlocks(string whichShiled) {
+		PhotonView pv = PhotonView.Get (this);
+		pv.RPC ("blocksRPC", PhotonTargets.All, whichShiled);
+	}
+
+	[PunRPC]
+	private void accuracyRPC(string who, float accuracy) {
+		if (who == "P1") {
+			accuracies1.Add (accuracy);
+		} else {
+			accuracies2.Add (accuracy);
+		}
+	}
+
+	[PunRPC]
+	private void blocksRPC(string whichShieled) {
+		soundFXManager.playHitShield ();
+		if (whichShieled == "shield1") {
+			blocks1++;
+		} else {
+			blocks2++;
+		}
+	}
+
 	private void handleGameOver() {
 //		float health = HUD.GetComponent<HealthBar> ().rectWidth;
 //
@@ -190,6 +219,8 @@ public class GameManager : Photon.PunBehaviour {
 
 		GameObject numbersTextYou1 = GameObject.Find ("NumbersTextYou" + cam.tag);
 		GameObject numbersTextThem1 = GameObject.Find ("NumbersTextThem" + cam.tag);
+		GameObject result1 = GameObject.Find ("ResultP1");
+		GameObject result2 = GameObject.Find ("ResultP2");
 
 		if (cam.tag == "P1") {
 			numbersTextYou1.GetComponent<TextMesh> ().text = p1numbers;
@@ -199,14 +230,26 @@ public class GameManager : Photon.PunBehaviour {
 			numbersTextThem1.GetComponent<TextMesh> ().text = p1numbers;
 		}
 
+		if (int.Parse (YouScore1.text) > int.Parse (ThemScore1.text)) {
+			result1.GetComponent<TextMesh> ().text = "YOU WIN";
+			result2.GetComponent<TextMesh> ().text = "YOU LOSE";
+		} else if (int.Parse (YouScore1.text) < int.Parse (ThemScore1.text)) {
+			result1.GetComponent<TextMesh> ().text = "YOU LOSE";
+			result2.GetComponent<TextMesh> ().text = "YOU WIN";
+		} else {
+			result1.GetComponent<TextMesh> ().text = "TIE (which is basically losing...)";
+			result1.GetComponent<TextMesh> ().text = "TIE (which is basically losing...)";
+		}
+
 		numbersTextYou1.GetComponent<MeshRenderer>().enabled = true;
 		numbersTextThem1.GetComponent<MeshRenderer>().enabled = true;
+		result1.GetComponent<MeshRenderer> ().enabled = true;
+		result2.GetComponent<MeshRenderer> ().enabled = true;
 
-		GameObject.Find ("Result" + cam.tag).GetComponent<MeshRenderer> ().enabled = true;
 		GameObject.Find ("StatsText" + cam.tag).GetComponent<MeshRenderer> ().enabled = true;
 		GameObject.Find ("PlayAgainText" + cam.tag).GetComponent<MeshRenderer> ().enabled = true;
 		GameObject.Find ("PlayAgainButton" + cam.tag).GetComponent<MeshRenderer> ().enabled = true;
-		GameObject.Find ("GameOverScreen1" + cam.tag).GetComponent<MeshRenderer> ().enabled = true;
+		GameObject.Find ("GameOverScreen" + cam.tag).GetComponent<MeshRenderer> ().enabled = true;
 	}
 
 	private string displayTime(float time) {
