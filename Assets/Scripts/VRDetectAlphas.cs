@@ -43,15 +43,17 @@ public class VRDetectAlphas : MonoBehaviour {
 	private VREyeRaycaster vrEyeRaycaster;
 	private SoundFXManager soundFXManager;
 	private GameManager gameManager;
-	private GameObject streakBonus;
-	private SpriteRenderer bonus;
-	private GameObject streakTimer;
-	private SpriteRenderer sale;
+//	private GameObject streakBonus;
+//	private SpriteRenderer bonus;
+//	private GameObject streakTimer;
+//	private SpriteRenderer sale;
 	private GameObject sparkle;
 
 	private int streak;
 	private int timeLimit = 9;
 	public float drawingTimer;
+	private GameObject timeRadial;
+	private GameObject radialBonus;
 		
 	void Start()
 	{
@@ -66,10 +68,12 @@ public class VRDetectAlphas : MonoBehaviour {
 		vrEyeRaycaster = cam.GetComponent<VREyeRaycaster> ();
 		soundFXManager = GameObject.Find ("SoundFXManager").GetComponent <SoundFXManager> ();
 		gameManager = GameObject.Find ("GameManager").GetComponent<GameManager>();
-		streakBonus = GameObject.Find ("StreakBonus");
-		bonus = GameObject.Find ("Bonus").GetComponent<SpriteRenderer> ();
-		streakTimer = GameObject.Find ("StreakTime");
-		sale = GameObject.Find ("Sale").GetComponent<SpriteRenderer> ();
+//		streakBonus = GameObject.Find ("StreakBonus");
+//		bonus = GameObject.Find ("Bonus").GetComponent<SpriteRenderer> ();
+//		streakTimer = GameObject.Find ("StreakTime");
+//		sale = GameObject.Find ("Sale").GetComponent<SpriteRenderer> ();
+		timeRadial = GameObject.Find ("RadialTimer");
+		radialBonus = GameObject.Find ("RadialBonus");
 
 		if (cam.tag == "P1") {
 			anim = GameObject.Find ("P1Char");
@@ -122,12 +126,15 @@ public class VRDetectAlphas : MonoBehaviour {
 		if (initiatedStartPoint && !finishedDrawing) {
 			if (SceneManager.GetActiveScene ().name != "Splash") {
 				if (streak > 1) {
-					streakBonus.GetComponent<MeshRenderer> ().enabled = true;
-					streakBonus.GetComponent<TextMesh> ().text = (streak-1).ToString ();
-					bonus.enabled = true;
+//					streakBonus.GetComponent<MeshRenderer> ().enabled = true;
+//					streakBonus.GetComponent<TextMesh> ().text = (streak-1).ToString ();
+//					bonus.enabled = true;
+					timeRadial.GetComponent<MeshRenderer> ().enabled = true;
+					radialBonus.GetComponent<MeshRenderer> ().enabled = true;
+					radialBonus.GetComponent<TextMesh> ().text = "X" + (streak).ToString ();
 				}
-				streakTimer.GetComponent<MeshRenderer> ().enabled = true;
-				sale.enabled = true;
+//				streakTimer.GetComponent<MeshRenderer> ().enabled = true;
+//				sale.enabled = true;
 			}
 			brushMode (hitCoord);
 		}
@@ -165,7 +172,6 @@ public class VRDetectAlphas : MonoBehaviour {
 				brushModeEnabled = false;
 				finishedDrawing = true;
 
-				print (SceneManager.GetActiveScene ());
 				if (SceneManager.GetActiveScene ().name == "Splash") {
 					GameObject.Find ("Launcher").GetComponent<Launcher> ().Connect ();
 				} else {
@@ -186,10 +192,13 @@ public class VRDetectAlphas : MonoBehaviour {
 					}
 
 					ShowBuzzword (accuracy);
-					streakBonus.GetComponent<MeshRenderer> ().enabled = false;
-					bonus.enabled = false;
-					streakTimer.GetComponent<MeshRenderer> ().enabled = false;
-					sale.enabled = false;
+//					streakBonus.GetComponent<MeshRenderer> ().enabled = false;
+//					bonus.enabled = false;
+//					streakTimer.GetComponent<MeshRenderer> ().enabled = false;
+//					sale.enabled = false;
+					timeRadial.GetComponent<MeshRenderer> ().enabled = false;
+					radialBonus.GetComponent<MeshRenderer> ().enabled = false;
+
 					Item2D.GetComponent<MeshRenderer> ().enabled = false;
 					Item3D.GetComponentInParent<ThrowableObject> ().itemThrown = true;
 					anim.GetComponent<AnimationManager> ().transitionToFinishedDrawing ();
@@ -217,15 +226,15 @@ public class VRDetectAlphas : MonoBehaviour {
 			drawingTimer = 0;
 		}
 
-		displayStreakTime (drawingTimer);
-
+//		displayStreakTime (drawingTimer);
+		timeRadial.GetComponent<Renderer>().material.SetFloat("_Cutoff", Mathf.InverseLerp(timeLimit - streak, 0, drawingTimer));
 
 //		print ("alpha time: " + alphaTimer + ", total time: " + timer + ", accuracy = " + alphaTimer / timer * 100f + "%");
 	}
 
-	private void displayStreakTime(float time) {
-		streakTimer.GetComponent<TextMesh> ().text = ((int)time).ToString ();
-	}
+//	private void displayStreakTime(float time) {
+//		streakTimer.GetComponent<TextMesh> ().text = ((int)time).ToString ();
+//	}
 
 	void ShowMessage (string score) {
 		scoreText.GetComponent<Text> ().enabled = true;
