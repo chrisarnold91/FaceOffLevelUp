@@ -48,4 +48,5 @@ MonoBehaviour:
   - changeHealthRPC
   - accuracyRPC
   - blocksRPC
+  - streakRPC
   DisableAutoOpenWizard: 1

@@ -120,11 +120,7 @@ public class ThrowableObject : Photon.PunBehaviour {
 				anim.GetComponent<AnimationManager> ().triggerGettingHit (col.gameObject.tag);
 				hitPlayer = true;
 				soundFXManager.playSplat ();
-				Debug.Log (splat.GetComponent<ParticleSystem> ().isPlaying);
 				splat.GetComponent<ParticleSystem> ().Play ();
-				//ParticleSystem.EmissionModule em = splat.GetComponent<ParticleSystem>().emission;
-				//em.enabled = true;
-				Debug.Log (splat.GetComponent<ParticleSystem> ().isPlaying);
 			}
 		}
 	}

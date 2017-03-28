@@ -43,7 +43,15 @@ public class VRDetectAlphas : MonoBehaviour {
 	private VREyeRaycaster vrEyeRaycaster;
 	private SoundFXManager soundFXManager;
 	private GameManager gameManager;
+	private GameObject streakBonus;
+	private SpriteRenderer bonus;
+	private GameObject streakTimer;
+	private SpriteRenderer sale;
+	private GameObject sparkle;
 
+	private int streak;
+	private int timeLimit = 9;
+	public float drawingTimer;
 		
 	void Start()
 	{
@@ -58,11 +66,28 @@ public class VRDetectAlphas : MonoBehaviour {
 		vrEyeRaycaster = cam.GetComponent<VREyeRaycaster> ();
 		soundFXManager = GameObject.Find ("SoundFXManager").GetComponent <SoundFXManager> ();
 		gameManager = GameObject.Find ("GameManager").GetComponent<GameManager>();
+		streakBonus = GameObject.Find ("StreakBonus");
+		bonus = GameObject.Find ("Bonus").GetComponent<SpriteRenderer> ();
+		streakTimer = GameObject.Find ("StreakTime");
+		sale = GameObject.Find ("Sale").GetComponent<SpriteRenderer> ();
 
 		if (cam.tag == "P1") {
 			anim = GameObject.Find ("P1Char");
 		} else { // tag == "P2"
 			anim = GameObject.Find ("P2Char");
+		}
+
+		if (SceneManager.GetActiveScene ().name != "Splash") {
+			if (cam.tag == "P1") {
+				streak = gameManager.streakP1;
+			} else {
+				streak = gameManager.streakP2;
+			}
+		}
+
+		drawingTimer = timeLimit - streak;
+		if (drawingTimer < 3) {
+			drawingTimer = 3;
 		}
 	}
 
@@ -95,15 +120,26 @@ public class VRDetectAlphas : MonoBehaviour {
 
 		// hitCoord will only be non zero when reticle is over a 2D drawing
 		if (initiatedStartPoint && !finishedDrawing) {
+			if (SceneManager.GetActiveScene ().name != "Splash") {
+				if (streak > 1) {
+					streakBonus.GetComponent<MeshRenderer> ().enabled = true;
+					streakBonus.GetComponent<TextMesh> ().text = (streak-1).ToString ();
+					bonus.enabled = true;
+				}
+				streakTimer.GetComponent<MeshRenderer> ().enabled = true;
+				sale.enabled = true;
+			}
 			brushMode (hitCoord);
 		}
 
-		if (Item3D.GetComponentInParent<ThrowableObject>().collidedYet) {
-			if (Item3D.GetComponentInParent<ThrowableObject>().hittingPlayer()) {
-				HUD.GetComponent<HealthBar> ().updateScore (roundScore);
-			}
+		if (SceneManager.GetActiveScene ().name != "Splash") {
+			if (Item3D.GetComponentInParent<ThrowableObject> ().collidedYet) {
+				if (Item3D.GetComponentInParent<ThrowableObject> ().hittingPlayer ()) {
+					HUD.GetComponent<HealthBar> ().updateScore (roundScore);
+				}
 
-			Destroy(gameObject);
+				Destroy (gameObject);
+			}
 		}
 	}
 
@@ -125,6 +161,7 @@ public class VRDetectAlphas : MonoBehaviour {
 
 			// player finished drawing
 			if (leftStartPoint) {
+
 				brushModeEnabled = false;
 				finishedDrawing = true;
 
@@ -133,10 +170,26 @@ public class VRDetectAlphas : MonoBehaviour {
 					GameObject.Find ("Launcher").GetComponent<Launcher> ().Connect ();
 				} else {
 
+					sparkle = GameObject.Find ("Sparkle" + cam.tag);
+					sparkle.GetComponent<ParticleSystem> ().Play ();
+
 					roundScore = calculateScore ();
 					int roundedScore = (int)roundScore;
 					ShowMessage (roundedScore.ToString ());
+
+					if (accuracy > 0.5 && drawingTimer > 0) {
+						roundScore *= streak;
+						gameManager.updateStreaks (cam.tag, streak + 1);
+					} else {
+						// reset streak to 1
+						gameManager.updateStreaks (cam.tag, 1);
+					}
+
 					ShowBuzzword (accuracy);
+					streakBonus.GetComponent<MeshRenderer> ().enabled = false;
+					bonus.enabled = false;
+					streakTimer.GetComponent<MeshRenderer> ().enabled = false;
+					sale.enabled = false;
 					Item2D.GetComponent<MeshRenderer> ().enabled = false;
 					Item3D.GetComponentInParent<ThrowableObject> ().itemThrown = true;
 					anim.GetComponent<AnimationManager> ().transitionToFinishedDrawing ();
@@ -153,18 +206,35 @@ public class VRDetectAlphas : MonoBehaviour {
 
 		Color pix = tex.GetPixel ((int)hitCoord.x, (int)hitCoord.y);
 
-		if (pix.a > alphaThreshold)
+		if (pix.a > alphaThreshold) {
 			alphaTimer += 1f;
+		}
 
 		timer += 1f;
+		if (drawingTimer > 0) {
+			drawingTimer -= Time.deltaTime;
+		} else {
+			drawingTimer = 0;
+		}
+
+		displayStreakTime (drawingTimer);
+
 
 //		print ("alpha time: " + alphaTimer + ", total time: " + timer + ", accuracy = " + alphaTimer / timer * 100f + "%");
+	}
+
+	private void displayStreakTime(float time) {
+		streakTimer.GetComponent<TextMesh> ().text = ((int)time).ToString ();
 	}
 
 	void ShowMessage (string score) {
 		scoreText.GetComponent<Text> ().enabled = true;
 		triggerShowScore ();
-		scoreText.GetComponent<Text> ().text = score;
+		string multiplier = "";
+		if (streak > 1) {
+			multiplier = " x" + streak.ToString ();
+		}
+		scoreText.GetComponent<Text> ().text = score + multiplier;
 	}
 
 	void ShowBuzzword(float accuracyFloat) {

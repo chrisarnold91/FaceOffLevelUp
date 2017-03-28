@@ -41,6 +41,10 @@ public class GameManager : Photon.PunBehaviour {
 	public int blocks2 = 0;
 	public List<float> accuracies1;
 	public List<float> accuracies2;
+	public int streakP1 = 1;
+	public int streakP2 = 1;
+	private int highestStreakP1 = 0;
+	private int highestStreakP2 = 0;
 
 	void Awake() {
 //		gameOverText = GameObject.Find ("GameOverText");
@@ -172,9 +176,14 @@ public class GameManager : Photon.PunBehaviour {
 		pv.RPC ("accuracyRPC", PhotonTargets.All, who, accuracy);
 	}
 
-	public void updateBlocks(string whichShiled) {
+	public void updateBlocks(string whichShield) {
 		PhotonView pv = PhotonView.Get (this);
-		pv.RPC ("blocksRPC", PhotonTargets.All, whichShiled);
+		pv.RPC ("blocksRPC", PhotonTargets.All, whichShield);
+	}
+
+	public void updateStreaks(string who, int streak) {
+		PhotonView pv = PhotonView.Get (this);
+		pv.RPC ("streakRPC", PhotonTargets.All, who, streak);
 	}
 
 	[PunRPC]
@@ -187,12 +196,27 @@ public class GameManager : Photon.PunBehaviour {
 	}
 
 	[PunRPC]
-	private void blocksRPC(string whichShieled) {
+	private void blocksRPC(string whichShield) {
 		soundFXManager.playHitShield ();
-		if (whichShieled == "shield1") {
+		if (whichShield == "shield1") {
 			blocks1++;
 		} else {
 			blocks2++;
+		}
+	}
+
+	[PunRPC]
+	private void streakRPC(string who, int streak) {
+		if (who == "P1") {
+			streakP1 = streak;
+			if (streak > highestStreakP1) {
+				highestStreakP1 = streak;
+			}
+		} else {
+			streakP2 = streak;
+			if (streak > highestStreakP2) {
+				highestStreakP2 = streak;
+			}
 		}
 	}
 
@@ -211,11 +235,13 @@ public class GameManager : Photon.PunBehaviour {
 		TextMesh YouScore1 = GameObject.Find("YouScore1").GetComponent<TextMesh>();
 		TextMesh ThemScore1 = GameObject.Find ("ThemScore1").GetComponent<TextMesh>();
 
-		string p1numbers = YouScore1.text + "\r\n\r\n" + countP1 + "\r\n\r\n"
-			+ getAvgAccuracy (accuracies1) + "%\r\n\r\n" + blocks1;
+		string sep = "\r\n\r\n";
 
-		string p2numbers = ThemScore1.text + "\r\n\r\n" + countP2 + "\r\n\r\n"
-			+ getAvgAccuracy (accuracies2) + "%\r\n\r\n" + blocks2;
+		string p1numbers = YouScore1.text + sep + countP1 + sep + (highestStreakP1).ToString() + sep
+			+ getAvgAccuracy (accuracies1) + "%" + sep + blocks1;
+
+		string p2numbers = ThemScore1.text + sep + countP2 + sep + (highestStreakP2).ToString() + sep
+			+ getAvgAccuracy (accuracies2) + "%" + sep + blocks2;
 
 		GameObject numbersTextYou1 = GameObject.Find ("NumbersTextYou" + cam.tag);
 		GameObject numbersTextThem1 = GameObject.Find ("NumbersTextThem" + cam.tag);
