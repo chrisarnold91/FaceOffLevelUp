@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44692534, g: 0.49678725, b: 0.5750856, a: 1}
+  m_IndirectSpecularColor: {r: 0.44692504, g: 0.4967869, b: 0.57508504, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -9991,7 +9991,7 @@ Prefab:
     - target: {fileID: 224000013784781400, guid: e058b820851534ce0ac50f869ade4128,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 17.4
       objectReference: {fileID: 0}
     - target: {fileID: 224000013784781400, guid: e058b820851534ce0ac50f869ade4128,
         type: 2}
@@ -11724,7 +11724,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6746092d79f3e4fe1bfa983603238e26, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 10
+      value: 990
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6746092d79f3e4fe1bfa983603238e26, type: 2}
       propertyPath: m_LocalRotation.x
@@ -22066,7 +22066,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 0668ce5f8442b4d509843455080b16da, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 722f48fe6454b4881a9ba8ac9fea2010, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -23140,11 +23140,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4000011353847358, guid: 7859879764fb241c3bb528c47262f48d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.07
+      value: 17.6
       objectReference: {fileID: 0}
     - target: {fileID: 4000011353847358, guid: 7859879764fb241c3bb528c47262f48d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 15.59
+      value: 14.66
       objectReference: {fileID: 0}
     - target: {fileID: 4000011353847358, guid: 7859879764fb241c3bb528c47262f48d, type: 2}
       propertyPath: m_LocalPosition.z
@@ -23204,7 +23204,7 @@ Prefab:
     - target: {fileID: 102000012223254108, guid: 7859879764fb241c3bb528c47262f48d,
         type: 2}
       propertyPath: m_FontSize
-      value: 60
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7859879764fb241c3bb528c47262f48d, type: 2}

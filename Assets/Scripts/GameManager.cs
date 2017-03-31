@@ -220,6 +220,14 @@ public class GameManager : Photon.PunBehaviour {
 		}
 	}
 
+	public int getStreak(string who) {
+		if (who == "P1") {
+			return streakP1;
+		} else {
+			return streakP2;
+		}
+	}
+
 	private void handleGameOver() {
 //		float health = HUD.GetComponent<HealthBar> ().rectWidth;
 //

@@ -18,13 +18,13 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 4c6c415254725494bab8115c800942a8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 852ca658ffb994bc9bd35f349404454b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
         name: _Cutoff
-      second: 0
+      second: 0.5
     - first:
         name: _Shininess
       second: 0.1

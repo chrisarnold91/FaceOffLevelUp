@@ -129,10 +129,10 @@ public class VRDetectAlphas : MonoBehaviour {
 //					streakBonus.GetComponent<MeshRenderer> ().enabled = true;
 //					streakBonus.GetComponent<TextMesh> ().text = (streak-1).ToString ();
 //					bonus.enabled = true;
-					timeRadial.GetComponent<MeshRenderer> ().enabled = true;
 					radialBonus.GetComponent<MeshRenderer> ().enabled = true;
 					radialBonus.GetComponent<TextMesh> ().text = "X" + (streak).ToString ();
 				}
+				timeRadial.GetComponent<MeshRenderer> ().enabled = true;
 //				streakTimer.GetComponent<MeshRenderer> ().enabled = true;
 //				sale.enabled = true;
 			}
@@ -178,19 +178,18 @@ public class VRDetectAlphas : MonoBehaviour {
 
 					sparkle = GameObject.Find ("Sparkle" + cam.tag);
 					sparkle.GetComponent<ParticleSystem> ().Play ();
-
 					roundScore = calculateScore ();
 					int roundedScore = (int)roundScore;
-					ShowMessage (roundedScore.ToString ());
 
-					if (accuracy > 0.5 && drawingTimer > 0) {
+					if (accuracy > 0.4 && drawingTimer > 0) {
 						roundScore *= streak;
 						gameManager.updateStreaks (cam.tag, streak + 1);
 					} else {
 						// reset streak to 1
 						gameManager.updateStreaks (cam.tag, 1);
 					}
-
+						
+					ShowMessage (roundedScore.ToString ());
 					ShowBuzzword (accuracy);
 //					streakBonus.GetComponent<MeshRenderer> ().enabled = false;
 //					bonus.enabled = false;
@@ -227,7 +226,7 @@ public class VRDetectAlphas : MonoBehaviour {
 		}
 
 //		displayStreakTime (drawingTimer);
-		timeRadial.GetComponent<Renderer>().material.SetFloat("_Cutoff", Mathf.InverseLerp(timeLimit - streak, 0, drawingTimer));
+		timeRadial.GetComponent<Renderer>().material.SetFloat("_Cutoff", Mathf.InverseLerp(timeLimit - streak, 0, drawingTimer / 2));
 
 //		print ("alpha time: " + alphaTimer + ", total time: " + timer + ", accuracy = " + alphaTimer / timer * 100f + "%");
 	}
@@ -240,8 +239,8 @@ public class VRDetectAlphas : MonoBehaviour {
 		scoreText.GetComponent<Text> ().enabled = true;
 		triggerShowScore ();
 		string multiplier = "";
-		if (streak > 1) {
-			multiplier = " x" + streak.ToString ();
+		if (gameManager.getStreak(cam.tag) - 1 > 1) {
+			multiplier = " x" + (gameManager.getStreak(cam.tag) - 1).ToString ();
 		}
 		scoreText.GetComponent<Text> ().text = score + multiplier;
 	}
