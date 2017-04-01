@@ -118,15 +118,20 @@ MonoBehaviour:
   m_InteractiveItem: {fileID: 114000011842249430}
   m_Renderer: {fileID: 23000011104601384}
   Item2D: {fileID: 1000012747813042}
-  Item3D: {fileID: 0}
-  cam: {fileID: 1000012969048720, guid: cb987addf60a648e6ace13c4542a1484, type: 2}
   thickness: 100
   baseScore: 40
   roundScore: 0
   brushModeEnabled: 0
   finishedDrawing: 0
-  score: 0
+  drawingSound: 0
+  startPoint: {x: 0, y: 0}
+  hitCoord: {x: 0, y: 0}
+  worldCoord: {x: 0, y: 0, z: 0}
+  initiatedStartPoint: 0
   leftStartPoint: 0
+  drawingTimer: 0
+  startCircle: {fileID: 1000014094124168, guid: f9f127fec233e4b03a7ff795a10f4dfb,
+    type: 2}
 --- !u!132 &132000011310991916
 GUIText:
   m_ObjectHideFlags: 1

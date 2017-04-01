@@ -21,6 +21,7 @@ public class VRDetectAlphas : MonoBehaviour {
 	// the pixel a player must look at to enter brush mode
 	public Vector2 startPoint;
 	public Vector2 hitCoord;
+	public Vector3 worldCoord;
 	public bool initiatedStartPoint = false;
 	public bool leftStartPoint = false;
 
@@ -54,6 +55,8 @@ public class VRDetectAlphas : MonoBehaviour {
 	public float drawingTimer;
 	private GameObject timeRadial;
 	private GameObject radialBonus;
+	public GameObject startCircle;
+	private GameObject circle;
 		
 	void Start()
 	{
@@ -67,7 +70,9 @@ public class VRDetectAlphas : MonoBehaviour {
 		tex = Instantiate(m_Renderer.material.mainTexture) as Texture2D;
 		vrEyeRaycaster = cam.GetComponent<VREyeRaycaster> ();
 		soundFXManager = GameObject.Find ("SoundFXManager").GetComponent <SoundFXManager> ();
-		gameManager = GameObject.Find ("GameManager").GetComponent<GameManager>();
+		if (SceneManager.GetActiveScene ().name != "Splash") {
+			gameManager = GameObject.Find ("GameManager").GetComponent<GameManager> ();
+		}
 //		streakBonus = GameObject.Find ("StreakBonus");
 //		bonus = GameObject.Find ("Bonus").GetComponent<SpriteRenderer> ();
 //		streakTimer = GameObject.Find ("StreakTime");
@@ -105,6 +110,7 @@ public class VRDetectAlphas : MonoBehaviour {
 		}
 
 		hitCoord = vrEyeRaycaster.hitCoord;
+		worldCoord = vrEyeRaycaster.worldCoord;
 
 		hitCoord.x *= tex.width;
 		hitCoord.y *= tex.height;
@@ -114,6 +120,13 @@ public class VRDetectAlphas : MonoBehaviour {
 				startPoint = hitCoord;
 				initiatedStartPoint = true;
 				drawingSound = true;
+				float quat_y;
+				if (cam.tag == "P1") {
+					quat_y = 0f;
+				} else {
+					quat_y = 180f;
+				}
+				circle = Instantiate (startCircle, worldCoord, Quaternion.Euler(0, quat_y, 0)) as GameObject;
 			}
 		}
 
@@ -144,7 +157,6 @@ public class VRDetectAlphas : MonoBehaviour {
 				if (Item3D.GetComponentInParent<ThrowableObject> ().hittingPlayer ()) {
 					HUD.GetComponent<HealthBar> ().updateScore (roundScore);
 				}
-
 				Destroy (gameObject);
 			}
 		}
@@ -203,6 +215,7 @@ public class VRDetectAlphas : MonoBehaviour {
 					anim.GetComponent<AnimationManager> ().transitionToFinishedDrawing ();
 					soundFXManager.playThrow ();
 					gameManager.updateAccuracy (cam.tag, accuracy);
+					Destroy (circle);
 				}
 			}
 		} else {
@@ -226,7 +239,9 @@ public class VRDetectAlphas : MonoBehaviour {
 		}
 
 //		displayStreakTime (drawingTimer);
-		timeRadial.GetComponent<Renderer>().material.SetFloat("_Cutoff", Mathf.InverseLerp(timeLimit - streak, 0, drawingTimer / 2));
+		if (SceneManager.GetActiveScene ().name != "Splash") {
+			timeRadial.GetComponent<Renderer> ().material.SetFloat ("_Cutoff", Mathf.InverseLerp (timeLimit - streak, 0, drawingTimer / 2));
+		}
 
 //		print ("alpha time: " + alphaTimer + ", total time: " + timer + ", accuracy = " + alphaTimer / timer * 100f + "%");
 	}

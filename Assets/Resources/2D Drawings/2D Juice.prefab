@@ -126,8 +126,12 @@ MonoBehaviour:
   drawingSound: 0
   startPoint: {x: 0, y: 0}
   hitCoord: {x: 0, y: 0}
+  worldCoord: {x: 0, y: 0, z: 0}
   initiatedStartPoint: 0
   leftStartPoint: 0
+  drawingTimer: 0
+  startCircle: {fileID: 1000014094124168, guid: f9f127fec233e4b03a7ff795a10f4dfb,
+    type: 2}
 --- !u!132 &132000010627156740
 GUIText:
   m_ObjectHideFlags: 1

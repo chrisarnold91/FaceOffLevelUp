@@ -80,10 +80,10 @@ public class ThrowableObject : Photon.PunBehaviour {
 
 	private void tossItem() {
 		if (movingUp) {
-			print ("moving up");
+//			print ("moving up");
 			transform.position = Vector3.MoveTowards (transform.position, highPoint, 1.25f);
 		} else {
-			print ("moving down");
+//			print ("moving down");
 			transform.position = Vector3.MoveTowards (transform.position, lowPoint, 1.25f);
 		}
 
@@ -98,10 +98,12 @@ public class ThrowableObject : Photon.PunBehaviour {
 
 
 	void OnCollisionEnter (Collision col) {
-		collidedYet = true;
-		if (col.gameObject.tag == "shield1" || col.gameObject.tag == "shield2") {
-			gameManager.updateBlocks (col.gameObject.tag);
+		if (!collidedYet) {
+			if (col.gameObject.tag == "shield1" || col.gameObject.tag == "shield2") {
+				gameManager.updateBlocks (col.gameObject.tag);
+			}
 		}
+		collidedYet = true;
 		if (col.gameObject.tag == "P1" || col.gameObject.tag == "P2") {
 			
 			if (col.gameObject.tag == "P1") {

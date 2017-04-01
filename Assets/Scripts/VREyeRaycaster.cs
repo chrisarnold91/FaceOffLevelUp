@@ -22,6 +22,7 @@ namespace VRStandardAssets.Utils
         [SerializeField] private float m_RayLength = 600f;              // How far into the scene the ray is cast.
 
 		public Vector2 hitCoord = Vector2.zero;
+		public Vector3 worldCoord = Vector3.zero;
 		        
         private VRInteractiveItem m_CurrentInteractible;                //The current interactive item
         private VRInteractiveItem m_LastInteractible;                   //The last interactive item
@@ -94,8 +95,10 @@ namespace VRStandardAssets.Utils
                     OnRaycasthit(hit);
 
 				// only if we hit a 2D interactive item, record its coordinates
-				if ((hit.collider.gameObject.name).Substring(0,2) == "2D")
+				if ((hit.collider.gameObject.name).Substring (0, 2) == "2D") {
 					hitCoord = hit.textureCoord;
+					worldCoord = hit.point;
+				}
             }
             else
             {
